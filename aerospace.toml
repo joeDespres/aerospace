@@ -68,6 +68,13 @@ outer.right =      4
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
+alt-r = [
+  'exec-and-forget borders style=round width=7.0 hidpi=off active_color=0xFFFFD700 inactive_color=0xFF555555 blacklist=Loom',
+  'mode resize'
+]
+
+
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -222,4 +229,36 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[mode.resize.binding]
+h = 'resize smart -50'
+l = 'resize smart +50'
+j = 'resize height +50'
+J = 'resize height +50'
+k = 'resize height -50'
+esc = [
+  'exec-and-forget borders style=round width=7.0 hidpi=off active_color=0xff2cff05 inactive_color=0xFFADD8E6 blacklist=Loom',
+  'mode main'
+]
+enter = [
+  'exec-and-forget borders style=round width=7.0 hidpi=off active_color=0xff2cff05 inactive_color=0xFFADD8E6 blacklist=Loom',
+  'mode main'
+]
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Alacritty'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Brave'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Safari'
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Slack'
+run = ['move-node-to-workspace 4']
+
 
