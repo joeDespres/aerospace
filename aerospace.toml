@@ -1,17 +1,11 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = [
-]
-
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget borders active_color=0xff2cff05 inactive_color=0xFFADD8E6 width=7.0'
+    'exec-and-forget borders borders style=round width=7.0 hidpi=off active_color=0xff2cff05 inactive_color=0xFFADD8E6 blacklist=Loom',
     ]
 
 # Start AeroSpace at login
@@ -24,7 +18,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 50
+accordion-padding = 150
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -39,7 +33,9 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focus-changed = ["move-mouse window-lazy-center"]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -59,12 +55,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 5
-inner.vertical =   5
-outer.left =       5
-outer.bottom =     5
-outer.top =        5
-outer.right =      5
+inner.horizontal = 4
+inner.vertical =   4
+outer.left =       4
+outer.bottom =     4
+outer.top =        4
+outer.right =      4
 
 # 'main' binding mode declaratio8
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -96,7 +92,7 @@ outer.right =      5
 # end tell'
 # '''
 
-alt-a = 'exec-and-forget open -a /Applications/Alacritty.app'
+alt-a = 'exec-and-forget open -n /Applications/Alacritty.app && aerospace layout floating'
 alt-b = 'exec-and-forget open -a /Applications/Brave\ Browser.app'
 alt-d = 'exec-and-forget open -a /Applications/Slack.app'
 alt-g = 'exec-and-forget open -a /Applications/ChatGPT.app'
@@ -123,8 +119,6 @@ ctrl-alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
-on-focus-changed = "move-mouse window-lazy-center"
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -160,16 +154,16 @@ alt-9 = 'workspace 9'
 # alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-a = 'move-node-to-workspace A'
+
+alt-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
+alt-shift-2 = 'move-node-to-workspace --focus-follows-window 2'
+alt-shift-3 = 'move-node-to-workspace --focus-follows-window 3'
+alt-shift-4 = 'move-node-to-workspace --focus-follows-window 4'
+alt-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
+alt-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
+alt-shift-7 = 'move-node-to-workspace --focus-follows-window 7'
+alt-shift-8 = 'move-node-to-workspace --focus-follows-window 8'
+alt-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
 # alt-shift-b = 'move-node-to-workspace B'
 # alt-shift-c = 'move-node-to-workspace C'
 # alt-shift-d = 'move-node-to-workspace D'
@@ -207,6 +201,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'loom'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'colorslurp'
 run = 'layout floating'
 
 # 'service' binding mode declaration.
